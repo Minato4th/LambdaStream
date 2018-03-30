@@ -20,7 +20,54 @@ public class Main {
             new User("Sveta", FEMALE, 30),
             new User("Jenea", MALE, 40));
 
+
     public static void main(String args[]) {
+
+        //Count how many occurrences of each word are in the string
+        Stream.of("Hello", "heloMotto")
+                .map(String::length)
+                .forEach(System.out::println);
+
+
+        printDelimiterLine();
+
+        //Write a method that will filter collection of users that are > 40 years
+        USERS.stream()
+                .filter(user -> user.getAge() > 40)
+                .forEach(System.out::println);
+
+
+        printDelimiterLine();
+
+
+        //Write a method to extract the youngest user
+        System.out.println(USERS.stream()
+                .sorted(Comparator.comparing(User::getAge))
+                .collect(Collectors.toList())
+                .get(0)
+        );
+
+
+        USERS.stream()
+                .min(Comparator.comparing(User::getAge))
+                .ifPresent(System.out::println);
+
+
+        printDelimiterLine();
+
+
+        USERS.stream().map(User::getName)
+                .collect(Collectors.toSet())
+                .forEach(System.out::println);
+
+        System.out.println();
+
+        USERS.stream().map(User::getName)
+                .distinct()
+                .forEach(System.out::println);
+
+
+        printDelimiterLine();
 
         Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8)
                 .stream()
